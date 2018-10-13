@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This analysis is from a sample of Twitter data with a hashtag for Japanese idols the user wants to see perform at a idol festival.
 
+The data is from October 2017, but the analysis is from October 13, 2018.
+
 First we load up the data, then take the top 20 idols to plot.
 
 
@@ -31,14 +33,14 @@ top20 <- head(arrange(df,desc(count)),n=20)
 
 We plot the data below using ggplot2 and plotly
 
-```{r pressure}
+```{r plotting}
 p <- plot_ly(top20,
     y = ~idol,
     x = ~count,
     name="Favorite idol you want for festival according to Twitter (2017)",
     type="bar",
-    orientation='h'
-)
+    orientation='h') %>%
+    layout(title="Favorite idol you want for festival according to Twitter (2017)")
 p
 ```
 
