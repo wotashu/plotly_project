@@ -1,0 +1,44 @@
+---
+title: "Japanese Idols: want to see at a festival"
+author: "Jonathan Lin"
+date: "October 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Summary
+
+This analysis is from a sample of Twitter data with a hashtag for Japanese idols the user wants to see perform at a idol festival.
+
+First we load up the data, then take the top 20 idols to plot.
+
+
+```{r library_data, results='hide', include=FALSE }
+library(plotly)
+library(readr)
+library(plyr)
+library(ggplot2)
+options(stringsAsFactors = FALSE)
+df <- read_csv("T:/GitHub/nlp_idols/no_rt.csv", locale = locale(encoding="UTF-8"))
+top20 <- head(arrange(df,desc(count)),n=20)
+
+```
+
+## Plotting the top 20
+
+We plot the data below using ggplot2 and plotly
+
+```{r pressure}
+p <- plot_ly(top20,
+    y = ~idol,
+    x = ~count,
+    name="Favorite idol you want for festival according to Twitter (2017)",
+    type="bar",
+    orientation='h'
+)
+p
+```
+
